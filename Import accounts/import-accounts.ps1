@@ -1,5 +1,5 @@
 # Let's keep our Office 365 tenant information here
-$domain = "mytenant.onmicrosoft.com"
+$domain = "yourtenant.onmicrosoft.com"
 
 # Name of CSV file to import
 $fileName = "it21e.csv"
