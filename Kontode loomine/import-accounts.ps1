@@ -1,11 +1,14 @@
 # Let's keep our Office 365 tenant information here
-$domain = "yourtenant.onmicrosoft.com"
+$domain = "<your tenant>.onmicrosoft.com"
 
 # Name of CSV file to import
 $fileName = "it21e.csv"
 
 # Name of teams group for class
 $teamName = "IT21E"
+
+# License type for users
+$licenseSku = "DEVELOPERPACK_E5"
 
 # Read credentials from file. If credential file doesn't exists then ask
 # credentials using dialog and save credentials to file.
@@ -15,8 +18,10 @@ if(Test-Path -Path cred.xml -PathType Leaf)
 }
 else 
 {
+    Write-Host "Getting credential"
     $cred = Get-Credential
     $cred | Export-Clixml -Path cred.xml
+    Write-Host "Got credential"
 }
 
 # Import modules we need to communicate with Azure and Office 365 services
@@ -32,7 +37,7 @@ Import-Module MicrosoftTeams
 $newUsers = Import-Csv $fileName -Delimiter ";" | 
             Select Id,FirstName,LastName,
                    @{n="Password"; e={ New-Password }},
-                   @{n="Email"; e={"$PSItem.ID@$domain"}}
+                   @{n="Email"; e={ $PSItem.ID + "@$domain"}}
 
 # Connect to Azure on Office 365 services we need to use
 Connect-ExchangeOnline -Credential $cred
@@ -47,10 +52,10 @@ if($team -eq $null)
     $team = New-Team -DisplayName $teamName -MailNickName $teamName
 }
 
-Write-Host "Team group ID: $team.GroupId"
+Write-Host "Team group ID: " + $team.GroupId
 
 # Get Office 365 subscription and read licenses
-$sku = Get-AzureADSubscribedSku | Where SkuPartNumber -eq ENTERPRISEPACK
+$sku = Get-AzureADSubscribedSku | Where SkuPartNumber -eq @licenseSku
 $license = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense
 $license.SkuId = $sku.SkuId
 
