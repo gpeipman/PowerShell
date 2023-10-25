@@ -1,11 +1,13 @@
-# SQL Serveri päringust CSV loomine
+# SQL Serveri päringust HTML-i genereerimine
 
-Skript ühendub SQL Serverisse, käivitab päringu ning salvestab tulemused CSV failina. Veergude eraldajana kasutatakse semikoolonit (;), et fail oleks Exceliga avatav ilma täiendavate tegevusteta lõppkasutaja poolt.
+Skript ühendub SQL Serverisse, käivitab päringu ning salvestab tulemused HTML failina. HTML sisaldab ka stiile ja seda saab lisaks veebiserverist pakkumisele avada ka otse võrgukettalt. Samuti saab sellise HTML faili saata töötajatele e-postiga.
 
 ## Failid
 
 - **addresses.csv** - demokeskkonnas loodud väljundfail klientide aadressidest
-- **export-sql.csv** - skript, mis SQL Serverist andmed toob ja CSV faili teeb
+- **addresses.html** - demokeskkonnas loodud väljundfail klientide aadressidest
+- **export-sql-csv.ps1** - toob SQL Serverist andmed ja teeb neist CSV-faili
+- **export-sql-html.ps1** - toob SQL Serverist andmed ja teeb neist HTML-faili
 
 ## Märkused
 
