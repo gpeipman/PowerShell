@@ -1,6 +1,6 @@
 # Office 365 kontode loomine õpilastele
 
-Skript loeb failist sisse kontod, mis tuleb Office 365 peale luua, genereerib paroolid, loob kontod, omistab neile litsentsid ja lisab need Teamsi gruppi. Skript küsib parooli ainult korra ning salvestab selle PowerShelli credentialina XML-formaadis kettale. Kui cred.xml fail on olemas, siis püüab skript sealt sisselogimise info kätte saada.
+Skript loeb failist sisse kontod, mis tuleb Office 365 peale luua, genereerib paroolid, loob kontod, omistab neile litsentsid ja lisab need nii Teamsi kui Azure AD gruppi. Skript küsib parooli ainult korra ning salvestab selle PowerShelli credentialina XML-formaadis kettale. Kui cred.xml fail on olemas, siis püüab skript sealt sisselogimise info kätte saada.
 
 ## Failid
 
@@ -16,6 +16,7 @@ Skripti alguses saab määrata seadeid:
 - **domain** - Office 365 domeen, milles tegutseme
 - **fileName** - andmefaili nimi
 - **teamName** - Teamsi grupi nimi, kuhu kasutajad lisada
+- **securityGroupName** - Azure AD turvagrupi nimi
 - **licenseSku** - määrab litsentsi, mis uutele kasutajatele omistatakse (litsentside loendi saab kätte käsuga Get-AzureADSubscribedSku)
 
 ## Märkused
